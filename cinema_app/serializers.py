@@ -20,6 +20,8 @@ class MovieDetailSerializer(serializers.ModelSerializer):
 class TicketSerializer(serializers.ModelSerializer):
     """Tickets"""
 
+    movie = serializers.SlugRelatedField(slug_field='title', read_only=True)
+
     class Meta:
         model = models.Ticket
         fields = "__all__"

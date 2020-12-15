@@ -19,3 +19,10 @@ class MovieDetailView(APIView):
         movie = models.Movie.objects.get(id=pk)
         serializer = serializers.MovieDetailSerializer(movie)
         return Response(serializer.data)
+
+class TicketView(APIView):
+    """Information about ticket"""
+    def get(self,request,pk):
+        ticket = models.Ticket.objects.get(id=pk)
+        serializer = serializers.TicketSerializer(ticket)
+        return Response(serializer.data)
