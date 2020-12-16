@@ -18,10 +18,26 @@ class MovieDetailSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 class TicketSerializer(serializers.ModelSerializer):
-    """Tickets"""
+    """Information about ticket"""
 
-    movie = serializers.SlugRelatedField(slug_field='title', read_only=True)
+    movie = serializers.SlugRelatedField(slug_field='title',read_only=True)
+    
 
     class Meta:
         model = models.Ticket
-        fields = "__all__"
+        fields = ('id','amount','movie','ip')
+
+class BuyTicketSerializer(serializers.ModelSerializer):
+    """Form to buy a ticket"""
+
+    class Meta:
+        model = models.Ticket
+        fields = ("amount","movie")
+
+    def buy(self, validated_data):
+        ticket = models.Ticket.objects.create(
+            ip = validated_data.get('ip', None),
+            movie = validated_data.get('movie', None),
+            defaults={'amount': validated_data.get('amount')}
+        )
+        return ticket

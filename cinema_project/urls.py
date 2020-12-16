@@ -17,8 +17,9 @@ from django.contrib import admin
 from django.urls import path
 from django.urls import include
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
-    path('api-auth/cinema/', include('cinema_app.urls')),
+    path('api/cinema/', include('cinema_app.urls')),
 ]

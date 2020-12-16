@@ -17,4 +17,4 @@ class MovieAdmin(admin.ModelAdmin):
 
 @admin.register(models.Ticket)
 class TicketAdmin(admin.ModelAdmin):
-    list_display = ('amount','movie')
+    list_display = ('amount','movie','ip')
